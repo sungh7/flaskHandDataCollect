@@ -59,14 +59,14 @@ def countId(path):
 
 def makeFolder(patient_id):
     try:
-        os.mkdir('static/'+str(patient_id))
+        os.mkdir('static/data/'+str(patient_id))
     except Error as e:
         print(e)
-    return 'static/'+str(patient_id)
+    return 'static/data/'+str(patient_id)
 
 def makeJson(filepath, dic):
-    with open(filepath+'/patient_data.json', 'w') as f:
-        json.dump(dic, f)
+    with open(filepath+'/patient_data.json', 'w', encoding='UTF-8-sig') as f:
+        json.dump(dic, f, ensure_ascii=False)
 
 @app.route("/")
 def index():
@@ -75,11 +75,21 @@ def index():
 @app.route("/upload", methods=['GET', 'POST'])
 def upload():
     if request.method == 'POST':
-        uploaded_files = request.files.getlist("file[]")
+        uploaded_files = request.files.getlist("files[]")
+        print(uploaded_files)
         if len(uploaded_files) <= 10:
             filepaths = []
             patient_id = countId(db_id_list[0])
             filepath = makeFolder(patient_id)
+            now = str(datetime.datetime.now())
+
+            for file in uploaded_files:
+                filename = file.filename
+                file.save(filepath+'/'+filename)
+                filepaths.append(filepath+'/'+filename)
+                file_id = countId(db_id_list[1])
+                video_type=''
+                insertBlob(file_id, patient_id, filepath, filepath+'/'+filename, video_type, now)
             patient_data = {
                 "id" : patient_id,
                 "name" : request.form['patientName'],
@@ -88,18 +98,11 @@ def upload():
                 "disease" : request.form['diseaseName'],
                 "hand" : request.form['diseaseHand'],
                 "finger_num" : request.form['diseaseFinger'],
-                "description" : request.form['description']
+                "description" : request.form['description'],
+                "files" : filepaths
             }
             insertPatientData(patient_data)
-            makeJson(filepath, patient_data)
-            now = str(datetime.datetime.now())
-
-            for file in uploaded_files:
-                filename = file.filename
-                file.save(filepath)
-                filepaths.append(filepath+'/'+filename)
-                file_id = countId(db_id_list[1])
-                insertBlob(file_id, patient_id, filepath, filepath+'/'+filename, video_type, now)
+            makeJson(filepath, patient_data)   
             return render_template('upload_complete.html')   
         else:
             return render_template('index.html')
