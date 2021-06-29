@@ -1,0 +1,188 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Hugo 0.84.0">
+    <title>Checkout example · Bootstrap v5.0</title>
+
+    <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/checkout/">
+
+    
+
+    <!-- Bootstrap core CSS -->
+<link href="static/assets/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+    </style>
+
+    
+    <!-- Custom styles for this template -->
+    <link href="static/assets/form-validation.css" rel="stylesheet">
+  </head>
+  <body class="bg-light">
+    
+<div class="container">
+  <main>
+    <div class="py-5 text-center">
+      <h2>동영상 업로드 폼</h2>
+      <p class="lead">빈칸을 채워주세요.</p>
+    </div> 
+    
+    <form class="card p-2" enctype="multipart/form-data" method="post" >
+    <div class="row g-5">
+      <!-- <div class="col-md-5 col-lg-4 order-md-last">
+        <h4 class="d-flex justify-content-between align-items-center mb-3">
+          <span class="text-primary">Your video</span>
+         <span class="badge bg-primary rounded-pill">3</span>
+        </h4>
+        <ul class="list-group mb-3">
+          <li class="list-group-item d-flex justify-content-between lh-sm">
+            <div>
+              <h6 class="my-0">Product name</h6>
+              <small class="text-muted">Brief description</small>
+            </div>
+            <div class="form-check">
+              <input name="onlyHand" name="onlyHand" type="radio" class="form-check-input" required>
+              <label class="form-check-label" for="debit">only hand</label>
+            </div>
+          </li>
+          <li class="list-group-item d-flex justify-content-between lh-sm">
+            <div>
+              <h6 class="my-0">Second product</h6>
+              <small class="text-muted">Brief description</small>
+            </div>
+            <span class="text-muted">$8</span>
+          </li>
+          <li class="list-group-item d-flex justify-content-between lh-sm">
+            <div>
+              <h6 class="my-0">Third item</h6>
+              <small class="text-muted">Brief description</small>
+            </div>
+            <span class="text-muted">$5</span>
+          </li>
+          <li class="list-group-item d-flex justify-content-between bg-light">
+            <div class="text-success">
+              <h6 class="my-0">Promo code</h6>
+              <small>EXAMPLECODE</small>
+            </div>
+            <span class="text-success">−$5</span>
+          </li>
+        </ul> 
+
+       
+         
+       </form> 
+
+        <hr class="my-4"> 
+        <form method="post" action="/upload" enctype="multipart/form-data"> 
+         
+        
+        
+      </div> -->
+      <div class="col-md-7 col-lg-8">
+        <!-- <form class="needs-validation" novalidate> -->
+          <div class="row g-3">
+            <div class="col-12">
+              <label for="patientName" class="form-label">환자 이름</label>
+              <input type="text" class="form-control" name="patientName" placeholder="이름" value="" required>
+              <div class="invalid-feedback">
+                 name of patient is required.
+              </div>
+            </div>
+
+
+            <div class="col-12">
+              <label for="patientAge" class="form-label">환자 나이</label>
+              <input type="text" class="form-control" name="patientAge" placeholder="65" value="" required>
+              <div class="invalid-feedback">
+                 age of patient is required.
+              </div>
+            </div>
+
+            <div class="col-12">
+              <label for="patientSex" class="form-label">환자 성별</label>
+              <input type="text" class="form-control" name="patientSex" placeholder="남 or 여" value="" required>
+              <div class="invalid-feedback">r
+                 sex of patient is required.
+              </div>
+            </div>
+
+
+            <div class="col-12">
+              <label for="diseaseName" class="form-label">환자 병명</label>
+              <input type="text" class="form-control" name="diseaseName" placeholder="방아쇠수지" value="" required>
+              <div class="invalid-feedback">
+                 name of disease is required.
+              </div>
+            </div>
+
+
+            <div class="col-12">
+              <label for="diseaseHand" class="form-label">증상 수부</label>
+              <input type="text" class="form-control" name="diseaseHand" placeholder="L or R" value="" required>
+              <div class="invalid-feedback">
+                 please insert L or R.
+              </div>
+              </div>
+
+
+            <div class="col-12">
+              <label for="diseaseFinger" class="form-label">증상 수지</label>
+              <input type="text" class="form-control" name="diseaseFinger" placeholder="1~5" value="" required>
+              <div class="invalid-feedback">
+                 1 or 2 or 3 or 4 or 5.
+              </div>
+            </div>
+
+
+
+            <div class="col-12">
+              <label for="description" class="form-label">증상 설명<span class="text-muted">(Optional)</span></label>
+              <input type="text" class="form-control" name="description" placeholder="환자의 증상에 대한 간략한 설명을 넣어주시면 감사하겠습니다.">
+              <div class="invalid-feedback">
+                Please add a brief description of the video if you like.
+              </div>
+            </div>
+            <hr class="my-4">
+          <h4 class="d-flex justify-content-between align-items-center mb-3">
+            <span class="text-primary">Video</span>
+            <!-- <span class="badge bg-primary rounded-pill">3</span> -->
+          </h4>
+          <div class="input-group">
+            <input type="file" name='files[]' class="form-control" multiple>
+            <!-- <button type="submit" class="btn btn-secondary">file add</button> -->
+          </div>
+          
+            <button class="w-100 btn btn-primary btn-lg" type="submit">Submit</button>
+          </form>
+         
+           
+      </div>
+    </div>
+  </main>
+
+
+</div>
+
+
+    <script src="static/assets/dist/js/bootstrap.bundle.min.js"></script>
+
+      <script src="static/assets/form-validation.js"></script>
+  </body>
+</html>
